@@ -6,8 +6,11 @@ import javax.inject.Inject;
 
 final class HelloWorldCommand implements Command {
 
+    private final Outputter outputter;
+    
     @Inject
-    HelloWorldCommand() {
+    HelloWorldCommand(Outputter outputter) {
+        this.outputter = outputter;
     }
 
     @Override
@@ -21,7 +24,7 @@ final class HelloWorldCommand implements Command {
             return Status.INVALID;
         }
 
-        System.out.println("World");
+        outputter.output("World!");
 
         return Status.HANDLED;
     }
