@@ -4,14 +4,16 @@
 package dagger_atm;
 
 import java.util.Scanner;
-
 import dagger_atm.CommandRouter;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class CommandLineAtm {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        CommandRouterFactory commandRouterFactory= DaggerCommandRouterFactory.create();
-        CommandRouter commandRouter = new CommandRouter();
+        String s = "Hello";
+
+        Scanner scanner = new Scanner(s);
+        CommandRouterFactory commandRouterFactory = DaggerCommandRouterFactory.create();
+        CommandRouter commandRouter = commandRouterFactory.router();
 
         while (scanner.hasNextLine()) {
             commandRouter.route(scanner.nextLine());

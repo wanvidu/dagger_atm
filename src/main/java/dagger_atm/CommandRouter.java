@@ -1,7 +1,7 @@
 package dagger_atm;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,10 +11,11 @@ import dagger_atm.Command;
 import dagger_atm.Command.Status;
 
 final class CommandRouter {
-    private final Map<String, Command> commands = Collections.emptyMap();
+    private final Map<String, Command> commands = new HashMap<>();
 
     @Inject
-    CommandRouter() {
+    CommandRouter(HelloWorldCommand helloWorldCommand) {
+        commands.put(helloWorldCommand.key(), helloWorldCommand);
     }
     
     Status route(String input) {
